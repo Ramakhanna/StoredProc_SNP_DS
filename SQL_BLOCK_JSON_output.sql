@@ -156,10 +156,10 @@ DECLARE
     FOR c_mapping IN c_snp_mapping
     LOOP
       dbms_output.put_line('{');
-      dbms_output.put_line('MAPPING_NAME:'||'"'||c_mapping.mapping_name||'"');
+      dbms_output.put_line('"MAPPING_NAME":'||'"'||c_mapping.mapping_name||'"');
       --dbms_output.put_line(',');
       --mapping component loop start array
-      dbms_output.put_line(',mapping_components:[');
+      dbms_output.put_line(',"mapping_components":[');
       FOR c_mapping_comp IN c_snp_map_comp (c_mapping.I_mapping)
       LOOP
         v_iter_map_comp  := v_iter_map_comp + 1;
@@ -169,17 +169,17 @@ DECLARE
           dbms_output.put_line(',{');
         END IF;
         -- dbms_output.put_line('======================Start Iteration of Mapping Component: '|| v_iter_map_comp||'======================');
-        dbms_output.put_line('NTH_MAPPING_COMPONENT: '||'"'||v_iter_map_comp||'"');
-        dbms_output.put_line(',I_MAP_COMP: '||'"'|| c_mapping_comp.i_map_comp||'"');
-        dbms_output.put_line(',COMPONENT_NAME:'||'"'|| c_mapping_comp.component_name||'"');
-        dbms_output.put_line(',I_ONWER_MAP_COMP: '||'"'|| c_mapping_comp.i_owner_map_comp||'"');
-        dbms_output.put_line(',TYPE_NAME: '||'"'|| c_mapping_comp.TYPE_NAME||'"');
-        dbms_output.put_line(',I_MAP_REF: '||'"'|| c_mapping_comp.I_MAP_REF||'"');
-        DBMS_OUTPUT.PUT_LINE(',IS_DERIVED_NAME: '||'"'|| c_mapping_comp.IS_DERIVED_NAME||'"');
+        dbms_output.put_line('"NTH_MAPPING_COMPONENT": '||'"'||v_iter_map_comp||'"');
+        dbms_output.put_line(',"I_MAP_COMP": '||'"'|| c_mapping_comp.i_map_comp||'"');
+        dbms_output.put_line(',"COMPONENT_NAME":'||'"'|| c_mapping_comp.component_name||'"');
+        dbms_output.put_line(',"I_ONWER_MAP_COMP": '||'"'|| c_mapping_comp.i_owner_map_comp||'"');
+        dbms_output.put_line(',"TYPE_NAME": '||'"'|| c_mapping_comp.TYPE_NAME||'"');
+        dbms_output.put_line(',"I_MAP_REF": '||'"'|| c_mapping_comp.I_MAP_REF||'"');
+        DBMS_OUTPUT.PUT_LINE(',"IS_DERIVED_NAME": '||'"'|| c_mapping_comp.IS_DERIVED_NAME||'"');
         --snp_map_cp mapping connection stage category
         --dbms_output.put_line(',');
         --map_connection_point_stage_category start array
-        dbms_output.put_line(',mapping_connpoint_stg_category:[');
+        dbms_output.put_line(',"mapping_connpoint_stg_category":[');
         FOR c_stg_category IN c_map_cp_stg_category (c_mapping.i_mapping, c_mapping_comp.i_map_comp)
         LOOP
           v_iter_stg_category  := v_iter_stg_category + 1;
@@ -189,19 +189,19 @@ DECLARE
             dbms_output.put_line(',{');
           END IF;
           --dbms_output.put_line('======================Start Iteration of Stage Category within Mapping Component : '|| v_iter_stg_category ||'======================');
-          dbms_output.put_line('NTH_MAP_CP_STG_CATEGORY: '||'"'||v_iter_stg_category||'"');
-          dbms_output.put_line(',I_MAP_CP: '||'"'||c_stg_category.i_map_cp||'"');
-          dbms_output.put_line(',CONNPOINT_NAME: '||'"'||c_stg_category.connpoint_name||'"');
-          dbms_output.put_line(',Business Name: '||'"'||c_stg_category.business_name||'"');
-          dbms_output.put_line(',CONNPOINT_NAME: '||'"'||c_stg_category.connpoint_name||'"');
-          dbms_output.put_line(',i_owner_map_comp: '||'"'||c_stg_category.i_owner_map_comp||'"');
-          dbms_output.put_line(',direction: '||'"'||c_stg_category.direction||'"');
+          dbms_output.put_line('"NTH_MAP_CP_STG_CATEGORY": '||'"'||v_iter_stg_category||'"');
+          dbms_output.put_line(',"I_MAP_CP": '||'"'||c_stg_category.i_map_cp||'"');
+          dbms_output.put_line(',"CONNPOINT_NAME": '||'"'||c_stg_category.connpoint_name||'"');
+          dbms_output.put_line(',"Business Name": '||'"'||c_stg_category.business_name||'"');
+          dbms_output.put_line(',"CONNPOINT_NAME": '||'"'||c_stg_category.connpoint_name||'"');
+          dbms_output.put_line(',"i_owner_map_comp": '||'"'||c_stg_category.i_owner_map_comp||'"');
+          dbms_output.put_line(',"direction": '||'"'||c_stg_category.direction||'"');
           ----      case when i_map_cp=p_start_map_cp AND NO_OF_DIRECTIONS=1 then 'SOURCE_ONLY_STAGE'
           --      when i_map_cp=p_end_map_cp and NO_OF_DIRECTIONS=1 then 'TARGET_ONLY_STAGE'
           --      ELSE 'TRANSFORMATION_STAGE' END AS STG_CATEGORY
-          dbms_output.put_line(',NO_OF_DIRECTIONS: '||'"'||c_stg_category.NO_OF_DIRECTIONS||'"');
+          dbms_output.put_line(',"NO_OF_DIRECTIONS": '||'"'||c_stg_category.NO_OF_DIRECTIONS||'"');
           --mapping expression start array
-          dbms_output.put_line(',map_expression_per_connpoint:[');
+          dbms_output.put_line(',"map_expression_per_connpoint":[');
           FOR c_map_expr IN c_snp_map_expr (c_stg_category.i_map_cp)
           LOOP
             v_iter_map_expr  := v_iter_map_expr + 1;
@@ -211,22 +211,22 @@ DECLARE
               dbms_output.put_line(',{');
             END IF;
             --dbms_output.put_line('======================Start Iteration of Mapping Expression within Mapping Component : '|| v_iter_map_expr||'======================');
-            dbms_output.put_line('NTH_MAP_EXPRESSION_PER_CP: '||'"'||v_iter_map_expr||'"');
-            dbms_output.put_line(',i_map_expr: '||'"'||c_map_expr.i_map_expr||'"');
-            dbms_output.put_line(',is_parsed: '||'"'||c_map_expr.is_parsed||'"');
-            dbms_output.put_line(',i_map_cp: '||'"'||c_map_expr.i_map_cp||'"');
-            dbms_output.put_line(',I_owner_map_prop: '||'"'||c_map_expr.I_owner_map_prop||'"');
-            dbms_output.put_line(',i_owner_map_attr: '||'"'||c_map_expr.i_owner_map_attr||'"');
-            dbms_output.put_line(',txt: '||'"'||c_map_expr.txt||'"');
-            dbms_output.put_line(',txt_clob: '||'"'||c_map_expr.txt_clob||'"');
-            dbms_output.put_line(',parsed_txt: '||'"'||c_map_expr.parsed_txt||'"');
-            dbms_output.put_line(',text_only: '||'"'||c_map_expr.text_only||'"');
+            dbms_output.put_line('"NTH_MAP_EXPRESSION_PER_CP": '||'"'||v_iter_map_expr||'"');
+            dbms_output.put_line(',"i_map_expr": '||'"'||c_map_expr.i_map_expr||'"');
+            dbms_output.put_line(',"is_parsed": '||'"'||c_map_expr.is_parsed||'"');
+            dbms_output.put_line(',"i_map_cp": '||'"'||c_map_expr.i_map_cp||'"');
+            dbms_output.put_line(',"I_owner_map_prop": '||'"'||c_map_expr.I_owner_map_prop||'"');
+            dbms_output.put_line(',"i_owner_map_attr": '||'"'||c_map_expr.i_owner_map_attr||'"');
+            dbms_output.put_line(',"txt": '||'"'||c_map_expr.txt||'"');
+            dbms_output.put_line(',"txt_clob": '||'"'||c_map_expr.txt_clob||'"');
+            dbms_output.put_line(',"parsed_txt": '||'"'||c_map_expr.parsed_txt||'"');
+            dbms_output.put_line(',"text_only": '||'"'||c_map_expr.text_only||'"');
             --dbms_output.put_line('======================End Iteration of Mapping Expression within Mapping Component : '|| v_iter_map_expr||'======================');
             dbms_output.put_line('}'); --ending mapping expression per cp object
           END LOOP;                    -- snp_map_expr loop
           dbms_output.put_line(']');   --mapping expression end array
           --mapping attribute start array
-          dbms_output.put_line(',map_attribute_per_connpoint:[');
+          dbms_output.put_line(',"map_attribute_per_connpoint":[');
           FOR c_map_attr IN c_snp_map_attr(c_stg_category.i_map_cp)
           LOOP
             v_iter_map_attr  := v_iter_map_attr + 1;
@@ -236,18 +236,18 @@ DECLARE
               dbms_output.put_line(',{');
             END IF;
             --dbms_output.put_line('======================Start Iteration of Mapping Attribute within Mapping Component : '|| v_iter_map_attr ||'======================');
-            dbms_output.put_line('NTH_MAP_ATTRIBUTE_PER_CP: '||'"'||v_iter_map_attr||'"');
-            dbms_output.put_line(',i_map_attr: '||'"'||c_map_attr.i_map_attr||'"');
-            dbms_output.put_line(',attr_name: '||'"'||c_map_attr.attr_name||'"');
-            dbms_output.put_line(',business_name: '||'"'||c_map_attr.business_name||'"');
-            dbms_output.put_line(',i_owner_map_cp: '||'"'||c_map_attr.i_owner_map_cp||'"');
-            dbms_output.put_line(',i_map_ref: '||'"'||c_map_attr.i_map_ref||'"');
-            dbms_output.put_line(',attr_type: '||'"'||c_map_attr.attr_type||'"');
-            dbms_output.put_line(',column_attr_length: '||'"'||c_map_attr.column_attr_length||'"');
-            dbms_output.put_line(',is_required: '||'"'||c_map_attr.is_required||'"');
-            dbms_output.put_line(',sort_pos: '||'"'||c_map_attr.sort_pos||'"');
-            dbms_output.put_line(',is_derived_name: '||'"'||c_map_attr.is_derived_name||'"');
-            dbms_output.put_line(',i_data_map_ref: '||'"'||c_map_attr.i_data_map_ref||'"');
+            dbms_output.put_line('"NTH_MAP_ATTRIBUTE_PER_CP": '||'"'||v_iter_map_attr||'"');
+            dbms_output.put_line(',"i_map_attr": '||'"'||c_map_attr.i_map_attr||'"');
+            dbms_output.put_line(',"attr_name": '||'"'||c_map_attr.attr_name||'"');
+            dbms_output.put_line(',"business_name": '||'"'||c_map_attr.business_name||'"');
+            dbms_output.put_line(',"i_owner_map_cp": '||'"'||c_map_attr.i_owner_map_cp||'"');
+            dbms_output.put_line(',"i_map_ref": '||'"'||c_map_attr.i_map_ref||'"');
+            dbms_output.put_line(',"attr_type": '||'"'||c_map_attr.attr_type||'"');
+            dbms_output.put_line(',"column_attr_length": '||'"'||c_map_attr.column_attr_length||'"');
+            dbms_output.put_line(',"is_required": '||'"'||c_map_attr.is_required||'"');
+            dbms_output.put_line(',"sort_pos": '||'"'||c_map_attr.sort_pos||'"');
+            dbms_output.put_line(',"is_derived_name": '||'"'||c_map_attr.is_derived_name||'"');
+            dbms_output.put_line(',"i_data_map_ref": '||'"'||c_map_attr.i_data_map_ref||'"');
             -- dbms_output.put_line('======================End Iteration of Mapping Attribute within Mapping Component : '|| v_iter_map_attr ||'======================');
             dbms_output.put_line('}'); --ending mapping attribute per cp object
           END LOOP;                    --snp_map_attr mapping attribute loop
@@ -259,7 +259,7 @@ DECLARE
         END LOOP;                    --snp_map_cp mapping connection stage category loop
         dbms_output.put_line(']');   --mapping_connection_point_stg_category end array
         --mapping reference start array
-        dbms_output.put_line(',map_expression_per_connpoint:[');
+        dbms_output.put_line(',"map_expression_per_connpoint":[');
         FOR c_map_ref IN c_snp_map_ref ( c_mapping_comp.I_MAP_REF)
         LOOP
           v_iter_map_ref := v_iter_map_ref + 1;
@@ -269,15 +269,15 @@ DECLARE
               dbms_output.put_line(',{');
             END IF;
           --dbms_output.put_line('======================Start Iteration of Mapping Reference within Mapping Component : '|| v_iter_map_ref ||'======================');
-           dbms_output.put_line('NTH_MAP_REFERENCE_PER_COMPONENT: '||'"'||v_iter_map_ref||'"');
-          dbms_output.put_line(',i_map_ref: '||'"'||c_map_ref.i_map_ref||'"');
-          dbms_output.put_line(',i_owner_mapping: '||'"'||c_map_ref.i_owner_mapping||'"');
-          dbms_output.put_line(',qualified_name: '||'"'||c_map_ref.qualified_name||'"');
-          dbms_output.put_line(',i_ref_id: '||'"'||c_map_ref.i_ref_id||'"');
-          dbms_output.put_line(',cod_mod: '||'"'||c_map_ref.cod_mod||'"');
-          dbms_output.put_line(',table_name: '||'"'||c_map_ref.table_name||'"');
+           dbms_output.put_line('"NTH_MAP_REFERENCE_PER_COMPONENT": '||'"'||v_iter_map_ref||'"');
+          dbms_output.put_line(',"i_map_ref": '||'"'||c_map_ref.i_map_ref||'"');
+          dbms_output.put_line(',"i_owner_mapping": '||'"'||c_map_ref.i_owner_mapping||'"');
+          dbms_output.put_line(',"qualified_name": '||'"'||c_map_ref.qualified_name||'"');
+          dbms_output.put_line(',"i_ref_id": '||'"'||c_map_ref.i_ref_id||'"');
+          dbms_output.put_line(',"cod_mod": '||'"'||c_map_ref.cod_mod||'"');
+          dbms_output.put_line(',"table_name": '||'"'||c_map_ref.table_name||'"');
             --mapping list of columns per reference start array
-        dbms_output.put_line(',map_list_of_columns_per_ref:[');
+        dbms_output.put_line(',"map_list_of_columns_per_ref":[');
           FOR c_col_in_table IN c_snp_col(c_map_ref.table_name)
           LOOP
             v_iter_col := v_iter_col + 1;
@@ -287,27 +287,28 @@ DECLARE
               dbms_output.put_line(',{');
             END IF;
             --dbms_output.put_line('======================Start Iteration of Column details within Mapping Component : '|| v_iter_col ||'======================');
-            dbms_output.put_line('NTH_COLUMN_PER_REF: '||'"'||v_iter_col||'"');
-            dbms_output.put_line(',I_COL: '||'"'||c_col_in_table.I_COL||'"');
-            dbms_output.put_line(',I_table: '||'"'||c_col_in_table.I_table||'"');
-            dbms_output.put_line(',col_name: '||'"'||c_col_in_table.col_name||'"');
-            dbms_output.put_line(',col_heading: '||'"'||c_col_in_table.col_heading||'"');
-            dbms_output.put_line(',col_desc: '||'"'||c_col_in_table.col_desc||'"');
-            dbms_output.put_line(',source_dt: '||'"'||c_col_in_table.source_dt||'"');
-            dbms_output.put_line(',pos: '||'"'||c_col_in_table.pos||'"');
-            dbms_output.put_line(',longc: '||'"'||c_col_in_table.longc||'"');
-            dbms_output.put_line(',scalec: '||'"'||c_col_in_table.scalec||'"');
-            dbms_output.put_line(',file_pos: '||'"'||c_col_in_table.file_pos||'"');
-            dbms_output.put_line(',bytes: '||'"'||c_col_in_table.bytes||'"');
-            dbms_output.put_line(',col_mandatory: '||'"'||c_col_in_table.col_mandatory||'"');
-            dbms_output.put_line(',check_flow: '||'"'||c_col_in_table.check_flow||'"');
-            dbms_output.put_line(',check_stat: '||'"'||c_col_in_table.check_stat||'"');
+            dbms_output.put_line('"NTH_COLUMN_PER_REF": '||'"'||v_iter_col||'"');
+            dbms_output.put_line(',"I_COL": '||'"'||c_col_in_table.I_COL||'"');
+            dbms_output.put_line(',"I_table": '||'"'||c_col_in_table.I_table||'"');
+            dbms_output.put_line(',"col_name": '||'"'||c_col_in_table.col_name||'"');
+            dbms_output.put_line(',"col_heading": '||'"'||c_col_in_table.col_heading||'"');
+            dbms_output.put_line(',"col_desc": '||'"'||c_col_in_table.col_desc||'"');
+            dbms_output.put_line(',"source_dt": '||'"'||c_col_in_table.source_dt||'"');
+            dbms_output.put_line(',"pos": '||'"'||c_col_in_table.pos||'"');
+            dbms_output.put_line(',"longc": '||'"'||c_col_in_table.longc||'"');
+            dbms_output.put_line(',"scalec": '||'"'||c_col_in_table.scalec||'"');
+            dbms_output.put_line(',"file_pos": '||'"'||c_col_in_table.file_pos||'"');
+            dbms_output.put_line(',"bytes": '||'"'||c_col_in_table.bytes||'"');
+            dbms_output.put_line(',"col_mandatory": '||'"'||c_col_in_table.col_mandatory||'"');
+            dbms_output.put_line(',"check_flow": '||'"'||c_col_in_table.check_flow||'"');
+            dbms_output.put_line(',"check_stat": '||'"'||c_col_in_table.check_stat||'"');
             --dbms_output.put_line('======================End Iteration of Column details within Mapping Component : '|| v_iter_col ||'======================');
           dbms_output.put_line('}'); --ending list of columns per reference object
           END LOOP; -- List of Columns in the table loop
           v_iter_col :=0;
           --dbms_output.put_line('======================End Iteration of Mapping Reference within Mapping Component : '|| v_iter_map_ref||'======================');
          dbms_output.put_line('}'); --ending mapping reference per component object
+                 dbms_output.put_line(']'); --mapping reference end array
         END LOOP;                  --mapping reference loop
         dbms_output.put_line(']'); --mapping reference end array
         v_iter_map_ref      := 0;
