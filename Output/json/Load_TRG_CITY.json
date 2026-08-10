@@ -1,0 +1,358 @@
+{
+"MAPPING_NAME":"Load TRG_CITY"
+,"mapping_components":[
+{
+"NTH_MAPPING_COMPONENT": "1"
+,"I_MAP_COMP": "1"
+,"COMPONENT_NAME":"SRC_CITY"
+,"I_ONWER_MAP_COMP": ""
+,"TYPE_NAME": "DATASTORE"
+,"I_MAP_REF": "1"
+,"IS_DERIVED_NAME": "0"
+,"mapping_connpoint_stg_category":[
+{
+"NTH_MAP_CP_STG_CATEGORY": "1"
+,"I_MAP_CP": "2"
+,"CONNPOINT_NAME": "OUTPUT1"
+,"Business Name": "OUTPUT1"
+,"i_owner_map_comp": "1"
+,"direction": "O"
+,"NO_OF_DIRECTIONS": "1"
+,"map_expression_per_connpoint":[
+]
+,"map_attribute_per_connpoint":[
+{
+"NTH_MAP_ATTRIBUTE_PER_CP": "1"
+,"i_map_attr": "1"
+,"attr_name": "POPULATION"
+,"business_name": "POPULATION"
+,"i_owner_map_cp": "2"
+,"i_map_ref": "2"
+,"attr_type": "P"
+,"column_attr_length": "10"
+,"is_required": "0"
+,"sort_pos": "4"
+,"is_derived_name": "1"
+,"i_data_map_ref": "17"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "2"
+,"i_map_attr": "2"
+,"attr_name": "CITY"
+,"business_name": "CITY"
+,"i_owner_map_cp": "2"
+,"i_map_ref": "10"
+,"attr_type": "P"
+,"column_attr_length": "50"
+,"is_required": "0"
+,"sort_pos": "2"
+,"is_derived_name": "1"
+,"i_data_map_ref": "18"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "3"
+,"i_map_attr": "3"
+,"attr_name": "CITY_ID"
+,"business_name": "CITY_ID"
+,"i_owner_map_cp": "2"
+,"i_map_ref": "12"
+,"attr_type": "P"
+,"column_attr_length": "10"
+,"is_required": "1"
+,"sort_pos": "1"
+,"is_derived_name": "1"
+,"i_data_map_ref": "17"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "4"
+,"i_map_attr": "4"
+,"attr_name": "REGION_ID"
+,"business_name": "REGION_ID"
+,"i_owner_map_cp": "2"
+,"i_map_ref": "15"
+,"attr_type": "P"
+,"column_attr_length": "10"
+,"is_required": "0"
+,"sort_pos": "3"
+,"is_derived_name": "1"
+,"i_data_map_ref": "17"
+}
+]
+}
+]
+,"map_reference_per_component":[
+{
+"NTH_MAP_REFERENCE_PER_COMPONENT": "1"
+,"i_map_ref": "1"
+,"i_owner_mapping": "1"
+,"qualified_name": "ORDERS_APPLICATION.SRC_CITY"
+,"i_ref_id": "6"
+,"cod_mod": "ORDERS_APPLICATION"
+,"table_name": "SRC_CITY"
+,"map_list_of_columns_per_ref":[
+{
+"NTH_COLUMN_PER_REF": "1"
+,"I_COL": "16"
+,"I_table": "6"
+,"col_name": "CITY_ID"
+,"col_heading": "CITY_ID"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "1"
+,"longc": "10"
+,"scalec": "0"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "1"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "2"
+,"I_COL": "17"
+,"I_table": "6"
+,"col_name": "CITY"
+,"col_heading": "CITY"
+,"col_desc": ""
+,"source_dt": "VARCHAR2"
+,"pos": "2"
+,"longc": "50"
+,"scalec": ""
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "3"
+,"I_COL": "18"
+,"I_table": "6"
+,"col_name": "REGION_ID"
+,"col_heading": "REGION_ID"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "3"
+,"longc": "10"
+,"scalec": "0"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "4"
+,"I_COL": "19"
+,"I_table": "6"
+,"col_name": "POPULATION"
+,"col_heading": "POPULATION"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "4"
+,"longc": "10"
+,"scalec": "0"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+]
+}
+]
+}
+,{
+"NTH_MAPPING_COMPONENT": "2"
+,"I_MAP_COMP": "2"
+,"COMPONENT_NAME":"FILTER"
+,"I_ONWER_MAP_COMP": ""
+,"TYPE_NAME": "FILTER"
+,"I_MAP_REF": ""
+,"IS_DERIVED_NAME": "0"
+,"mapping_connpoint_stg_category":[
+{
+"NTH_MAP_CP_STG_CATEGORY": "1"
+,"I_MAP_CP": "3"
+,"CONNPOINT_NAME": "INPUT1"
+,"Business Name": "INPUT1"
+,"i_owner_map_comp": "2"
+,"direction": "I"
+,"NO_OF_DIRECTIONS": "2"
+,"map_expression_per_connpoint":[
+]
+,"map_attribute_per_connpoint":[
+]
+}
+,{
+"NTH_MAP_CP_STG_CATEGORY": "2"
+,"I_MAP_CP": "4"
+,"CONNPOINT_NAME": "OUTPUT1"
+,"Business Name": "OUTPUT1"
+,"i_owner_map_comp": "2"
+,"direction": "O"
+,"NO_OF_DIRECTIONS": "2"
+,"map_expression_per_connpoint":[
+]
+,"map_attribute_per_connpoint":[
+]
+}
+]
+,"map_reference_per_component":[
+]
+}
+,{
+"NTH_MAPPING_COMPONENT": "3"
+,"I_MAP_COMP": "3"
+,"COMPONENT_NAME":"TRG_CITY"
+,"I_ONWER_MAP_COMP": ""
+,"TYPE_NAME": "DATASTORE"
+,"I_MAP_REF": "3"
+,"IS_DERIVED_NAME": "1"
+,"mapping_connpoint_stg_category":[
+{
+"NTH_MAP_CP_STG_CATEGORY": "1"
+,"I_MAP_CP": "5"
+,"CONNPOINT_NAME": "INPUT1"
+,"Business Name": "INPUT1"
+,"i_owner_map_comp": "3"
+,"direction": "I"
+,"NO_OF_DIRECTIONS": "1"
+,"map_expression_per_connpoint":[
+{
+"NTH_MAP_EXPRESSION_PER_CP": "1"
+,"i_map_expr": "2"
+,"is_parsed": "1"
+,"i_map_cp": "5"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "5"
+,"txt": "SRC_CITY.CITY"
+,"txt_clob": "SRC_CITY.CITY"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "2"
+,"i_map_expr": "3"
+,"is_parsed": "1"
+,"i_map_cp": "5"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "6"
+,"txt": "SRC_CITY.CITY_ID"
+,"txt_clob": "SRC_CITY.CITY_ID"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "3"
+,"i_map_expr": "4"
+,"is_parsed": "1"
+,"i_map_cp": "5"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "7"
+,"txt": "SRC_CITY.POPULATION"
+,"txt_clob": "SRC_CITY.POPULATION"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "4"
+,"i_map_expr": "5"
+,"is_parsed": "1"
+,"i_map_cp": "5"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "8"
+,"txt": "SRC_CITY.REGION_ID"
+,"txt_clob": "SRC_CITY.REGION_ID"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+]
+,"map_attribute_per_connpoint":[
+]
+}
+]
+,"map_reference_per_component":[
+{
+"NTH_MAP_REFERENCE_PER_COMPONENT": "1"
+,"i_map_ref": "3"
+,"i_owner_mapping": "1"
+,"qualified_name": "SALES_ADMINISTRATION.TRG_CITY"
+,"i_ref_id": "1"
+,"cod_mod": "SALES_ADMINISTRATION"
+,"table_name": "TRG_CITY"
+,"map_list_of_columns_per_ref":[
+{
+"NTH_COLUMN_PER_REF": "1"
+,"I_COL": "1"
+,"I_table": "1"
+,"col_name": "CITY_ID"
+,"col_heading": "CITY_ID"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "1"
+,"longc": "10"
+,"scalec": "0"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "1"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "2"
+,"I_COL": "2"
+,"I_table": "1"
+,"col_name": "CITY"
+,"col_heading": "CITY"
+,"col_desc": ""
+,"source_dt": "VARCHAR2"
+,"pos": "3"
+,"longc": "50"
+,"scalec": ""
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "3"
+,"I_COL": "3"
+,"I_table": "1"
+,"col_name": "POPULATION"
+,"col_heading": "POPULATION"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "4"
+,"longc": "10"
+,"scalec": "0"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "4"
+,"I_COL": "4"
+,"I_table": "1"
+,"col_name": "REGION_ID"
+,"col_heading": "REGION_ID"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "2"
+,"longc": "10"
+,"scalec": "0"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "1"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+]
+}
+]
+}
+]
+}
