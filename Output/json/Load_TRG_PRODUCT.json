@@ -153,6 +153,8 @@
 ]
 }
 ]
+,"mapping_transformations_per_component":[
+]
 }
 ,{
 "NTH_MAPPING_COMPONENT": "2"
@@ -348,6 +350,8 @@
 ]
 ,"map_reference_per_component":[
 ]
+,"mapping_transformations_per_component":[
+]
 }
 ,{
 "NTH_MAPPING_COMPONENT": "3"
@@ -399,6 +403,34 @@
 }
 ]
 ,"map_reference_per_component":[
+]
+,"mapping_transformations_per_component":[
+{
+"NTH_PROPERTY_NAME_PER_COMPONENT": "1"
+,"COMPONENT_NAME":"JOIN"
+,"i_map_prop": "102"
+,"prop_name": "JOIN_CONDITION"
+,"business_name": "JOIN_CONDITION"
+,"i_prop_def": "44"
+,"i_owner_mapping": "4"
+,"disp_name_key": "ComponentProperty.Join.JOIN_CONDITION"
+,"I_map_comp": "12"
+,"mapping_transformation_expression_per_component":[
+{
+"NTH_MAP_TRANFORMATION_EXPRESSION": "1"
+,"COMPONENT_NAME":"JOIN"
+,"i_map_expr": "35"
+,"is_parsed": "1"
+,"i_map_cp": ""
+,"I_owner_map_prop": "102"
+,"i_owner_map_attr": ""
+,"txt": "SRC_PRODUCT.FAMILY_NAME = TRG_PROD_FAMILY.FAMILY_NAME  "
+,"txt_clob": "SRC_PRODUCT.FAMILY_NAME = TRG_PROD_FAMILY.FAMILY_NAME  "
+,"parsed_txt": "@{R0} = @{R1}  "
+,"text_only": "0"
+}
+]
+}
 ]
 }
 ,{
@@ -561,6 +593,8 @@
 ]
 }
 ]
+,"mapping_transformations_per_component":[
+]
 }
 ,{
 "NTH_MAPPING_COMPONENT": "5"
@@ -659,6 +693,8 @@
 }
 ]
 }
+]
+,"mapping_transformations_per_component":[
 ]
 }
 ]
