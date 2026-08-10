@@ -1,0 +1,324 @@
+{
+"MAPPING_NAME":"Load TRG_COUNTRY"
+,"mapping_components":[
+{
+"NTH_MAPPING_COMPONENT": "1"
+,"I_MAP_COMP": "4"
+,"COMPONENT_NAME":"TRG_COUNTRY"
+,"I_ONWER_MAP_COMP": ""
+,"TYPE_NAME": "DATASTORE"
+,"I_MAP_REF": "26"
+,"IS_DERIVED_NAME": "1"
+,"mapping_connpoint_stg_category":[
+{
+"NTH_MAP_CP_STG_CATEGORY": "1"
+,"I_MAP_CP": "7"
+,"CONNPOINT_NAME": "INPUT1"
+,"Business Name": "INPUT1"
+,"i_owner_map_comp": "4"
+,"direction": "I"
+,"NO_OF_DIRECTIONS": "1"
+,"map_expression_per_connpoint":[
+{
+"NTH_MAP_EXPRESSION_PER_CP": "1"
+,"i_map_expr": "10"
+,"is_parsed": "1"
+,"i_map_cp": "7"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "9"
+,"txt": "upper(DISTINCT_.COUNTRY)"
+,"txt_clob": "upper(DISTINCT_.COUNTRY)"
+,"parsed_txt": "upper(@{R0})"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "2"
+,"i_map_expr": "11"
+,"is_parsed": "1"
+,"i_map_cp": "7"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "10"
+,"txt": "DISTINCT_.COUNTRY_ID"
+,"txt_clob": "DISTINCT_.COUNTRY_ID"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+]
+,"map_attribute_per_connpoint":[
+]
+}
+]
+,"map_reference_per_component":[
+{
+"NTH_MAP_REFERENCE_PER_COMPONENT": "1"
+,"i_map_ref": "26"
+,"i_owner_mapping": "2"
+,"qualified_name": "SALES_ADMINISTRATION.TRG_COUNTRY"
+,"i_ref_id": "3"
+,"cod_mod": "SALES_ADMINISTRATION"
+,"table_name": "TRG_COUNTRY"
+,"map_list_of_columns_per_ref":[
+{
+"NTH_COLUMN_PER_REF": "1"
+,"I_COL": "8"
+,"I_table": "3"
+,"col_name": "COUNTRY_ID"
+,"col_heading": "COUNTRY_ID"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "1"
+,"longc": "10"
+,"scalec": "0"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "1"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "2"
+,"I_COL": "9"
+,"I_table": "3"
+,"col_name": "COUNTRY"
+,"col_heading": "COUNTRY"
+,"col_desc": ""
+,"source_dt": "VARCHAR2"
+,"pos": "2"
+,"longc": "50"
+,"scalec": ""
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+]
+}
+]
+}
+,{
+"NTH_MAPPING_COMPONENT": "2"
+,"I_MAP_COMP": "5"
+,"COMPONENT_NAME":"DISTINCT_"
+,"I_ONWER_MAP_COMP": ""
+,"TYPE_NAME": "DISTINCT"
+,"I_MAP_REF": ""
+,"IS_DERIVED_NAME": "0"
+,"mapping_connpoint_stg_category":[
+{
+"NTH_MAP_CP_STG_CATEGORY": "1"
+,"I_MAP_CP": "9"
+,"CONNPOINT_NAME": "OUTPUT1"
+,"Business Name": "OUTPUT1"
+,"i_owner_map_comp": "5"
+,"direction": "O"
+,"NO_OF_DIRECTIONS": "2"
+,"map_expression_per_connpoint":[
+]
+,"map_attribute_per_connpoint":[
+{
+"NTH_MAP_ATTRIBUTE_PER_CP": "1"
+,"i_map_attr": "11"
+,"attr_name": "COUNTRY"
+,"business_name": "COUNTRY"
+,"i_owner_map_cp": "9"
+,"i_map_ref": ""
+,"attr_type": "P"
+,"column_attr_length": "50"
+,"is_required": "1"
+,"sort_pos": "1"
+,"is_derived_name": ""
+,"i_data_map_ref": "44"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "2"
+,"i_map_attr": "12"
+,"attr_name": "COUNTRY_ID"
+,"business_name": "COUNTRY_ID"
+,"i_owner_map_cp": "9"
+,"i_map_ref": ""
+,"attr_type": "P"
+,"column_attr_length": "10"
+,"is_required": "1"
+,"sort_pos": "0"
+,"is_derived_name": ""
+,"i_data_map_ref": "43"
+}
+]
+}
+,{
+"NTH_MAP_CP_STG_CATEGORY": "2"
+,"I_MAP_CP": "10"
+,"CONNPOINT_NAME": "INPUT1"
+,"Business Name": "INPUT1"
+,"i_owner_map_comp": "5"
+,"direction": "I"
+,"NO_OF_DIRECTIONS": "2"
+,"map_expression_per_connpoint":[
+{
+"NTH_MAP_EXPRESSION_PER_CP": "1"
+,"i_map_expr": "12"
+,"is_parsed": "1"
+,"i_map_cp": "10"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "11"
+,"txt": "SRC_REGION.COUNTRY"
+,"txt_clob": "SRC_REGION.COUNTRY"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "2"
+,"i_map_expr": "13"
+,"is_parsed": "1"
+,"i_map_cp": "10"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "12"
+,"txt": "SRC_REGION.COUNTRY_ID"
+,"txt_clob": "SRC_REGION.COUNTRY_ID"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+]
+,"map_attribute_per_connpoint":[
+]
+}
+]
+,"map_reference_per_component":[
+]
+}
+,{
+"NTH_MAPPING_COMPONENT": "3"
+,"I_MAP_COMP": "6"
+,"COMPONENT_NAME":"SRC_REGION"
+,"I_ONWER_MAP_COMP": ""
+,"TYPE_NAME": "DATASTORE"
+,"I_MAP_REF": "27"
+,"IS_DERIVED_NAME": "1"
+,"mapping_connpoint_stg_category":[
+{
+"NTH_MAP_CP_STG_CATEGORY": "1"
+,"I_MAP_CP": "11"
+,"CONNPOINT_NAME": "OUTPUT1"
+,"Business Name": "OUTPUT1"
+,"i_owner_map_comp": "6"
+,"direction": "O"
+,"NO_OF_DIRECTIONS": "1"
+,"map_expression_per_connpoint":[
+]
+,"map_attribute_per_connpoint":[
+{
+"NTH_MAP_ATTRIBUTE_PER_CP": "1"
+,"i_map_attr": "13"
+,"attr_name": "COUNTRY"
+,"business_name": "COUNTRY"
+,"i_owner_map_cp": "11"
+,"i_map_ref": "28"
+,"attr_type": "P"
+,"column_attr_length": "50"
+,"is_required": "0"
+,"sort_pos": "4"
+,"is_derived_name": "1"
+,"i_data_map_ref": "25"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "2"
+,"i_map_attr": "14"
+,"attr_name": "COUNTRY_ID"
+,"business_name": "COUNTRY_ID"
+,"i_owner_map_cp": "11"
+,"i_map_ref": "29"
+,"attr_type": "P"
+,"column_attr_length": "10"
+,"is_required": "0"
+,"sort_pos": "3"
+,"is_derived_name": "1"
+,"i_data_map_ref": "24"
+}
+]
+}
+]
+,"map_reference_per_component":[
+{
+"NTH_MAP_REFERENCE_PER_COMPONENT": "1"
+,"i_map_ref": "27"
+,"i_owner_mapping": "2"
+,"qualified_name": "ORDERS_APPLICATION.SRC_REGION"
+,"i_ref_id": "7"
+,"cod_mod": "ORDERS_APPLICATION"
+,"table_name": "SRC_REGION"
+,"map_list_of_columns_per_ref":[
+{
+"NTH_COLUMN_PER_REF": "1"
+,"I_COL": "20"
+,"I_table": "7"
+,"col_name": "REGION_ID"
+,"col_heading": "REGION_ID"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "1"
+,"longc": "10"
+,"scalec": "0"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "1"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "2"
+,"I_COL": "21"
+,"I_table": "7"
+,"col_name": "REGION"
+,"col_heading": "REGION"
+,"col_desc": ""
+,"source_dt": "VARCHAR2"
+,"pos": "2"
+,"longc": "50"
+,"scalec": ""
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "3"
+,"I_COL": "22"
+,"I_table": "7"
+,"col_name": "COUNTRY_ID"
+,"col_heading": "COUNTRY_ID"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "3"
+,"longc": "10"
+,"scalec": "0"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "4"
+,"I_COL": "23"
+,"I_table": "7"
+,"col_name": "COUNTRY"
+,"col_heading": "COUNTRY"
+,"col_desc": ""
+,"source_dt": "VARCHAR2"
+,"pos": "4"
+,"longc": "50"
+,"scalec": ""
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+]
+}
+]
+}
+]
+}
