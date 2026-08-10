@@ -95,6 +95,8 @@
 ]
 }
 ]
+,"mapping_transformations_per_component":[
+]
 }
 ,{
 "NTH_MAPPING_COMPONENT": "2"
@@ -185,6 +187,8 @@
 }
 ]
 ,"map_reference_per_component":[
+]
+,"mapping_transformations_per_component":[
 ]
 }
 ,{
@@ -319,6 +323,9 @@
 ]
 }
 ]
+,"mapping_transformations_per_component":[
+]
 }
 ]
 }
+
