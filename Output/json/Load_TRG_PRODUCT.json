@@ -1,0 +1,666 @@
+{
+"MAPPING_NAME":"Load TRG_PRODUCT"
+,"mapping_components":[
+{
+"NTH_MAPPING_COMPONENT": "1"
+,"I_MAP_COMP": "10"
+,"COMPONENT_NAME":"TRG_PRODUCT"
+,"I_ONWER_MAP_COMP": ""
+,"TYPE_NAME": "DATASTORE"
+,"I_MAP_REF": "70"
+,"IS_DERIVED_NAME": "1"
+,"mapping_connpoint_stg_category":[
+{
+"NTH_MAP_CP_STG_CATEGORY": "1"
+,"I_MAP_CP": "19"
+,"CONNPOINT_NAME": "INPUT1"
+,"Business Name": "INPUT1"
+,"i_owner_map_comp": "10"
+,"direction": "I"
+,"NO_OF_DIRECTIONS": "1"
+,"map_expression_per_connpoint":[
+{
+"NTH_MAP_EXPRESSION_PER_CP": "1"
+,"i_map_expr": "25"
+,"is_parsed": "1"
+,"i_map_cp": "19"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "20"
+,"txt": "DISTINCT_.PRODUCT_ID"
+,"txt_clob": "DISTINCT_.PRODUCT_ID"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "2"
+,"i_map_expr": "26"
+,"is_parsed": "1"
+,"i_map_cp": "19"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "21"
+,"txt": "DISTINCT_.PRICE"
+,"txt_clob": "DISTINCT_.PRICE"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "3"
+,"i_map_expr": "27"
+,"is_parsed": "1"
+,"i_map_cp": "19"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "22"
+,"txt": "DISTINCT_.FAMILY_ID"
+,"txt_clob": "DISTINCT_.FAMILY_ID"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "4"
+,"i_map_expr": "28"
+,"is_parsed": "1"
+,"i_map_cp": "19"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "23"
+,"txt": "DISTINCT_.PRODUCT"
+,"txt_clob": "DISTINCT_.PRODUCT"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+]
+,"map_attribute_per_connpoint":[
+]
+}
+]
+,"map_reference_per_component":[
+{
+"NTH_MAP_REFERENCE_PER_COMPONENT": "1"
+,"i_map_ref": "70"
+,"i_owner_mapping": "4"
+,"qualified_name": "SALES_ADMINISTRATION.TRG_PRODUCT"
+,"i_ref_id": "5"
+,"cod_mod": "SALES_ADMINISTRATION"
+,"table_name": "TRG_PRODUCT"
+,"map_list_of_columns_per_ref":[
+{
+"NTH_COLUMN_PER_REF": "1"
+,"I_COL": "12"
+,"I_table": "5"
+,"col_name": "PRODUCT_ID"
+,"col_heading": "PRODUCT_ID"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "1"
+,"longc": "10"
+,"scalec": "0"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "1"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "2"
+,"I_COL": "13"
+,"I_table": "5"
+,"col_name": "FAMILY_ID"
+,"col_heading": "FAMILY_ID"
+,"col_desc": ""
+,"source_dt": "VARCHAR2"
+,"pos": "2"
+,"longc": "3"
+,"scalec": ""
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "1"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "3"
+,"I_COL": "14"
+,"I_table": "5"
+,"col_name": "PRICE"
+,"col_heading": "PRICE"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "3"
+,"longc": "10"
+,"scalec": "2"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "4"
+,"I_COL": "15"
+,"I_table": "5"
+,"col_name": "PRODUCT"
+,"col_heading": "PRODUCT"
+,"col_desc": ""
+,"source_dt": "VARCHAR2"
+,"pos": "4"
+,"longc": "50"
+,"scalec": ""
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+]
+}
+]
+}
+,{
+"NTH_MAPPING_COMPONENT": "2"
+,"I_MAP_COMP": "11"
+,"COMPONENT_NAME":"DISTINCT_"
+,"I_ONWER_MAP_COMP": ""
+,"TYPE_NAME": "DISTINCT"
+,"I_MAP_REF": ""
+,"IS_DERIVED_NAME": "0"
+,"mapping_connpoint_stg_category":[
+{
+"NTH_MAP_CP_STG_CATEGORY": "1"
+,"I_MAP_CP": "21"
+,"CONNPOINT_NAME": "OUTPUT1"
+,"Business Name": "OUTPUT1"
+,"i_owner_map_comp": "11"
+,"direction": "O"
+,"NO_OF_DIRECTIONS": "2"
+,"map_expression_per_connpoint":[
+]
+,"map_attribute_per_connpoint":[
+{
+"NTH_MAP_ATTRIBUTE_PER_CP": "1"
+,"i_map_attr": "24"
+,"attr_name": "PRODUCT_ID"
+,"business_name": "PRODUCT_ID"
+,"i_owner_map_cp": "21"
+,"i_map_ref": ""
+,"attr_type": "P"
+,"column_attr_length": "10"
+,"is_required": "1"
+,"sort_pos": "2"
+,"is_derived_name": ""
+,"i_data_map_ref": "93"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "2"
+,"i_map_attr": "25"
+,"attr_name": "PRICE"
+,"business_name": "PRICE"
+,"i_owner_map_cp": "21"
+,"i_map_ref": ""
+,"attr_type": "P"
+,"column_attr_length": "10"
+,"is_required": "0"
+,"sort_pos": "4"
+,"is_derived_name": ""
+,"i_data_map_ref": "93"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "3"
+,"i_map_attr": "26"
+,"attr_name": "FAMILY_NAME"
+,"business_name": "FAMILY_NAME"
+,"i_owner_map_cp": "21"
+,"i_map_ref": ""
+,"attr_type": "P"
+,"column_attr_length": "50"
+,"is_required": "0"
+,"sort_pos": "1"
+,"is_derived_name": ""
+,"i_data_map_ref": "92"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "4"
+,"i_map_attr": "27"
+,"attr_name": "FAMILY_NAME_1"
+,"business_name": "FAMILY_NAME_1"
+,"i_owner_map_cp": "21"
+,"i_map_ref": ""
+,"attr_type": "P"
+,"column_attr_length": "50"
+,"is_required": "0"
+,"sort_pos": "5"
+,"is_derived_name": ""
+,"i_data_map_ref": "92"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "5"
+,"i_map_attr": "28"
+,"attr_name": "FAMILY_ID"
+,"business_name": "FAMILY_ID"
+,"i_owner_map_cp": "21"
+,"i_map_ref": ""
+,"attr_type": "P"
+,"column_attr_length": "3"
+,"is_required": "1"
+,"sort_pos": "0"
+,"is_derived_name": ""
+,"i_data_map_ref": "92"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "6"
+,"i_map_attr": "29"
+,"attr_name": "PRODUCT"
+,"business_name": "PRODUCT"
+,"i_owner_map_cp": "21"
+,"i_map_ref": ""
+,"attr_type": "P"
+,"column_attr_length": "50"
+,"is_required": "0"
+,"sort_pos": "3"
+,"is_derived_name": ""
+,"i_data_map_ref": "92"
+}
+]
+}
+,{
+"NTH_MAP_CP_STG_CATEGORY": "2"
+,"I_MAP_CP": "22"
+,"CONNPOINT_NAME": "INPUT1"
+,"Business Name": "INPUT1"
+,"i_owner_map_comp": "11"
+,"direction": "I"
+,"NO_OF_DIRECTIONS": "2"
+,"map_expression_per_connpoint":[
+{
+"NTH_MAP_EXPRESSION_PER_CP": "1"
+,"i_map_expr": "30"
+,"is_parsed": "1"
+,"i_map_cp": "22"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "25"
+,"txt": "SRC_PRODUCT.PRICE"
+,"txt_clob": "SRC_PRODUCT.PRICE"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "2"
+,"i_map_expr": "31"
+,"is_parsed": "1"
+,"i_map_cp": "22"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "26"
+,"txt": "TRG_PROD_FAMILY.FAMILY_NAME"
+,"txt_clob": "TRG_PROD_FAMILY.FAMILY_NAME"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "3"
+,"i_map_expr": "32"
+,"is_parsed": "1"
+,"i_map_cp": "22"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "27"
+,"txt": "SRC_PRODUCT.FAMILY_NAME"
+,"txt_clob": "SRC_PRODUCT.FAMILY_NAME"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "4"
+,"i_map_expr": "33"
+,"is_parsed": "1"
+,"i_map_cp": "22"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "28"
+,"txt": "TRG_PROD_FAMILY.FAMILY_ID"
+,"txt_clob": "TRG_PROD_FAMILY.FAMILY_ID"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "5"
+,"i_map_expr": "34"
+,"is_parsed": "1"
+,"i_map_cp": "22"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "29"
+,"txt": "SRC_PRODUCT.PRODUCT"
+,"txt_clob": "SRC_PRODUCT.PRODUCT"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+,{
+"NTH_MAP_EXPRESSION_PER_CP": "6"
+,"i_map_expr": "29"
+,"is_parsed": "1"
+,"i_map_cp": "22"
+,"I_owner_map_prop": ""
+,"i_owner_map_attr": "24"
+,"txt": "SRC_PRODUCT.PRODUCT_ID"
+,"txt_clob": "SRC_PRODUCT.PRODUCT_ID"
+,"parsed_txt": "@{R0}"
+,"text_only": "0"
+}
+]
+,"map_attribute_per_connpoint":[
+]
+}
+]
+,"map_reference_per_component":[
+]
+}
+,{
+"NTH_MAPPING_COMPONENT": "3"
+,"I_MAP_COMP": "12"
+,"COMPONENT_NAME":"JOIN"
+,"I_ONWER_MAP_COMP": ""
+,"TYPE_NAME": "JOIN"
+,"I_MAP_REF": ""
+,"IS_DERIVED_NAME": "0"
+,"mapping_connpoint_stg_category":[
+{
+"NTH_MAP_CP_STG_CATEGORY": "1"
+,"I_MAP_CP": "23"
+,"CONNPOINT_NAME": "OUTPUT1"
+,"Business Name": "OUTPUT1"
+,"i_owner_map_comp": "12"
+,"direction": "O"
+,"NO_OF_DIRECTIONS": "3"
+,"map_expression_per_connpoint":[
+]
+,"map_attribute_per_connpoint":[
+]
+}
+,{
+"NTH_MAP_CP_STG_CATEGORY": "2"
+,"I_MAP_CP": "24"
+,"CONNPOINT_NAME": "INPUT2"
+,"Business Name": "INPUT2"
+,"i_owner_map_comp": "12"
+,"direction": "I"
+,"NO_OF_DIRECTIONS": "3"
+,"map_expression_per_connpoint":[
+]
+,"map_attribute_per_connpoint":[
+]
+}
+,{
+"NTH_MAP_CP_STG_CATEGORY": "3"
+,"I_MAP_CP": "25"
+,"CONNPOINT_NAME": "INPUT1"
+,"Business Name": "INPUT1"
+,"i_owner_map_comp": "12"
+,"direction": "I"
+,"NO_OF_DIRECTIONS": "3"
+,"map_expression_per_connpoint":[
+]
+,"map_attribute_per_connpoint":[
+]
+}
+]
+,"map_reference_per_component":[
+]
+}
+,{
+"NTH_MAPPING_COMPONENT": "4"
+,"I_MAP_COMP": "13"
+,"COMPONENT_NAME":"SRC_PRODUCT"
+,"I_ONWER_MAP_COMP": ""
+,"TYPE_NAME": "DATASTORE"
+,"I_MAP_REF": "78"
+,"IS_DERIVED_NAME": "0"
+,"mapping_connpoint_stg_category":[
+{
+"NTH_MAP_CP_STG_CATEGORY": "1"
+,"I_MAP_CP": "26"
+,"CONNPOINT_NAME": "OUTPUT1"
+,"Business Name": "OUTPUT1"
+,"i_owner_map_comp": "13"
+,"direction": "O"
+,"NO_OF_DIRECTIONS": "1"
+,"map_expression_per_connpoint":[
+]
+,"map_attribute_per_connpoint":[
+{
+"NTH_MAP_ATTRIBUTE_PER_CP": "1"
+,"i_map_attr": "30"
+,"attr_name": "FAMILY_NAME"
+,"business_name": "FAMILY_NAME"
+,"i_owner_map_cp": "26"
+,"i_map_ref": "84"
+,"attr_type": "P"
+,"column_attr_length": "50"
+,"is_required": "0"
+,"sort_pos": "4"
+,"is_derived_name": "1"
+,"i_data_map_ref": "91"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "2"
+,"i_map_attr": "31"
+,"attr_name": "PRICE"
+,"business_name": "PRICE"
+,"i_owner_map_cp": "26"
+,"i_map_ref": "77"
+,"attr_type": "P"
+,"column_attr_length": "10"
+,"is_required": "0"
+,"sort_pos": "3"
+,"is_derived_name": "1"
+,"i_data_map_ref": "90"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "3"
+,"i_map_attr": "32"
+,"attr_name": "PRODUCT"
+,"business_name": "PRODUCT"
+,"i_owner_map_cp": "26"
+,"i_map_ref": "87"
+,"attr_type": "P"
+,"column_attr_length": "50"
+,"is_required": "0"
+,"sort_pos": "2"
+,"is_derived_name": "1"
+,"i_data_map_ref": "91"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "4"
+,"i_map_attr": "33"
+,"attr_name": "PRODUCT_ID"
+,"business_name": "PRODUCT_ID"
+,"i_owner_map_cp": "26"
+,"i_map_ref": "89"
+,"attr_type": "P"
+,"column_attr_length": "10"
+,"is_required": "1"
+,"sort_pos": "1"
+,"is_derived_name": "1"
+,"i_data_map_ref": "90"
+}
+]
+}
+]
+,"map_reference_per_component":[
+{
+"NTH_MAP_REFERENCE_PER_COMPONENT": "1"
+,"i_map_ref": "78"
+,"i_owner_mapping": "4"
+,"qualified_name": "ORDERS_APPLICATION.SRC_PRODUCT"
+,"i_ref_id": "8"
+,"cod_mod": "ORDERS_APPLICATION"
+,"table_name": "SRC_PRODUCT"
+,"map_list_of_columns_per_ref":[
+{
+"NTH_COLUMN_PER_REF": "1"
+,"I_COL": "24"
+,"I_table": "8"
+,"col_name": "PRODUCT_ID"
+,"col_heading": "PRODUCT_ID"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "1"
+,"longc": "10"
+,"scalec": "0"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "1"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "2"
+,"I_COL": "25"
+,"I_table": "8"
+,"col_name": "PRODUCT"
+,"col_heading": "PRODUCT"
+,"col_desc": ""
+,"source_dt": "VARCHAR2"
+,"pos": "2"
+,"longc": "50"
+,"scalec": ""
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "3"
+,"I_COL": "26"
+,"I_table": "8"
+,"col_name": "PRICE"
+,"col_heading": "PRICE"
+,"col_desc": ""
+,"source_dt": "NUMBER"
+,"pos": "3"
+,"longc": "10"
+,"scalec": "2"
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "4"
+,"I_COL": "27"
+,"I_table": "8"
+,"col_name": "FAMILY_NAME"
+,"col_heading": "FAMILY_NAME"
+,"col_desc": ""
+,"source_dt": "VARCHAR2"
+,"pos": "4"
+,"longc": "50"
+,"scalec": ""
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+]
+}
+]
+}
+,{
+"NTH_MAPPING_COMPONENT": "5"
+,"I_MAP_COMP": "14"
+,"COMPONENT_NAME":"TRG_PROD_FAMILY"
+,"I_ONWER_MAP_COMP": ""
+,"TYPE_NAME": "DATASTORE"
+,"I_MAP_REF": "82"
+,"IS_DERIVED_NAME": "1"
+,"mapping_connpoint_stg_category":[
+{
+"NTH_MAP_CP_STG_CATEGORY": "1"
+,"I_MAP_CP": "28"
+,"CONNPOINT_NAME": "OUTPUT1"
+,"Business Name": "OUTPUT1"
+,"i_owner_map_comp": "14"
+,"direction": "O"
+,"NO_OF_DIRECTIONS": "1"
+,"map_expression_per_connpoint":[
+]
+,"map_attribute_per_connpoint":[
+{
+"NTH_MAP_ATTRIBUTE_PER_CP": "1"
+,"i_map_attr": "34"
+,"attr_name": "FAMILY_NAME"
+,"business_name": "FAMILY_NAME"
+,"i_owner_map_cp": "28"
+,"i_map_ref": "83"
+,"attr_type": "P"
+,"column_attr_length": "50"
+,"is_required": "0"
+,"sort_pos": "2"
+,"is_derived_name": "1"
+,"i_data_map_ref": "91"
+}
+,{
+"NTH_MAP_ATTRIBUTE_PER_CP": "2"
+,"i_map_attr": "35"
+,"attr_name": "FAMILY_ID"
+,"business_name": "FAMILY_ID"
+,"i_owner_map_cp": "28"
+,"i_map_ref": "85"
+,"attr_type": "P"
+,"column_attr_length": "3"
+,"is_required": "1"
+,"sort_pos": "1"
+,"is_derived_name": "1"
+,"i_data_map_ref": "91"
+}
+]
+}
+]
+,"map_reference_per_component":[
+{
+"NTH_MAP_REFERENCE_PER_COMPONENT": "1"
+,"i_map_ref": "82"
+,"i_owner_mapping": "4"
+,"qualified_name": "SALES_ADMINISTRATION.TRG_PROD_FAMILY"
+,"i_ref_id": "4"
+,"cod_mod": "SALES_ADMINISTRATION"
+,"table_name": "TRG_PROD_FAMILY"
+,"map_list_of_columns_per_ref":[
+{
+"NTH_COLUMN_PER_REF": "1"
+,"I_COL": "10"
+,"I_table": "4"
+,"col_name": "FAMILY_ID"
+,"col_heading": "FAMILY_ID"
+,"col_desc": ""
+,"source_dt": "VARCHAR2"
+,"pos": "1"
+,"longc": "3"
+,"scalec": ""
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "1"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+,{
+"NTH_COLUMN_PER_REF": "2"
+,"I_COL": "11"
+,"I_table": "4"
+,"col_name": "FAMILY_NAME"
+,"col_heading": "FAMILY_NAME"
+,"col_desc": ""
+,"source_dt": "VARCHAR2"
+,"pos": "2"
+,"longc": "50"
+,"scalec": ""
+,"file_pos": ""
+,"bytes": "0"
+,"col_mandatory": "0"
+,"check_flow": "1"
+,"check_stat": "0"
+}
+]
+}
+]
+}
+]
+}
+
