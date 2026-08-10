@@ -193,7 +193,7 @@ DECLARE
           dbms_output.put_line(',"I_MAP_CP": '||'"'||c_stg_category.i_map_cp||'"');
           dbms_output.put_line(',"CONNPOINT_NAME": '||'"'||c_stg_category.connpoint_name||'"');
           dbms_output.put_line(',"Business Name": '||'"'||c_stg_category.business_name||'"');
-          dbms_output.put_line(',"CONNPOINT_NAME": '||'"'||c_stg_category.connpoint_name||'"');
+          --dbms_output.put_line(',"CONNPOINT_NAME": '||'"'||c_stg_category.connpoint_name||'"');
           dbms_output.put_line(',"i_owner_map_comp": '||'"'||c_stg_category.i_owner_map_comp||'"');
           dbms_output.put_line(',"direction": '||'"'||c_stg_category.direction||'"');
           ----      case when i_map_cp=p_start_map_cp AND NO_OF_DIRECTIONS=1 then 'SOURCE_ONLY_STAGE'
@@ -259,29 +259,29 @@ DECLARE
         END LOOP;                    --snp_map_cp mapping connection stage category loop
         dbms_output.put_line(']');   --mapping_connection_point_stg_category end array
         --mapping reference start array
-        dbms_output.put_line(',"map_expression_per_connpoint":[');
+        dbms_output.put_line(',"map_reference_per_component":[');
         FOR c_map_ref IN c_snp_map_ref ( c_mapping_comp.I_MAP_REF)
         LOOP
-          v_iter_map_ref := v_iter_map_ref + 1;
-                      IF v_iter_map_ref=1 THEN
-              dbms_output.put_line('{');
-            ELSE
-              dbms_output.put_line(',{');
-            END IF;
+          v_iter_map_ref  := v_iter_map_ref + 1;
+          IF v_iter_map_ref=1 THEN
+            dbms_output.put_line('{');
+          ELSE
+            dbms_output.put_line(',{');
+          END IF;
           --dbms_output.put_line('======================Start Iteration of Mapping Reference within Mapping Component : '|| v_iter_map_ref ||'======================');
-           dbms_output.put_line('"NTH_MAP_REFERENCE_PER_COMPONENT": '||'"'||v_iter_map_ref||'"');
+          dbms_output.put_line('"NTH_MAP_REFERENCE_PER_COMPONENT": '||'"'||v_iter_map_ref||'"');
           dbms_output.put_line(',"i_map_ref": '||'"'||c_map_ref.i_map_ref||'"');
           dbms_output.put_line(',"i_owner_mapping": '||'"'||c_map_ref.i_owner_mapping||'"');
           dbms_output.put_line(',"qualified_name": '||'"'||c_map_ref.qualified_name||'"');
           dbms_output.put_line(',"i_ref_id": '||'"'||c_map_ref.i_ref_id||'"');
           dbms_output.put_line(',"cod_mod": '||'"'||c_map_ref.cod_mod||'"');
           dbms_output.put_line(',"table_name": '||'"'||c_map_ref.table_name||'"');
-            --mapping list of columns per reference start array
-        dbms_output.put_line(',"map_list_of_columns_per_ref":[');
+          --mapping list of columns per reference start array
+          dbms_output.put_line(',"map_list_of_columns_per_ref":[');
           FOR c_col_in_table IN c_snp_col(c_map_ref.table_name)
           LOOP
-            v_iter_col := v_iter_col + 1;
-               IF v_iter_col=1 THEN
+            v_iter_col  := v_iter_col + 1;
+            IF v_iter_col=1 THEN
               dbms_output.put_line('{');
             ELSE
               dbms_output.put_line(',{');
@@ -303,14 +303,14 @@ DECLARE
             dbms_output.put_line(',"check_flow": '||'"'||c_col_in_table.check_flow||'"');
             dbms_output.put_line(',"check_stat": '||'"'||c_col_in_table.check_stat||'"');
             --dbms_output.put_line('======================End Iteration of Column details within Mapping Component : '|| v_iter_col ||'======================');
-          dbms_output.put_line('}'); --ending list of columns per reference object
-          END LOOP; -- List of Columns in the table loop
+            dbms_output.put_line('}'); --ending list of columns per reference object
+          END LOOP;                    -- List of Columns in the table loop
           v_iter_col :=0;
           --dbms_output.put_line('======================End Iteration of Mapping Reference within Mapping Component : '|| v_iter_map_ref||'======================');
-         dbms_output.put_line('}'); --ending mapping reference per component object
-                 dbms_output.put_line(']'); --mapping reference end array
-        END LOOP;                  --mapping reference loop
-        dbms_output.put_line(']'); --mapping reference end array
+          dbms_output.put_line(']'); --ending mapping reference per component array object
+          dbms_output.put_line('}'); --mapping reference end object
+        END LOOP;                    --mapping reference loop
+        dbms_output.put_line(']');   --mapping reference end array
         v_iter_map_ref      := 0;
         v_iter_stg_category := 0;
         --dbms_output.put_line('======================End Iteration of Mapping Component : '|| v_iter_map_comp||'======================');
