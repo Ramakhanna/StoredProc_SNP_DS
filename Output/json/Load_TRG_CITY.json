@@ -1,3 +1,4 @@
+anonymous block completed
 {
 "MAPPING_NAME":"Load TRG_CITY"
 ,"mapping_components":[
@@ -161,6 +162,8 @@
 ]
 }
 ]
+,"mapping_transformations_per_component":[
+]
 }
 ,{
 "NTH_MAPPING_COMPONENT": "2"
@@ -199,6 +202,34 @@
 }
 ]
 ,"map_reference_per_component":[
+]
+,"mapping_transformations_per_component":[
+{
+"NTH_PROPERTY_NAME_PER_COMPONENT": "1"
+,"COMPONENT_NAME":"FILTER"
+,"i_map_prop": "1"
+,"prop_name": "FILTER_CONDITION"
+,"business_name": "FILTER_CONDITION"
+,"i_prop_def": "36"
+,"i_owner_mapping": "1"
+,"disp_name_key": "ComponentProperty.Filter.FILTER_CONDITION"
+,"I_map_comp": "2"
+,"mapping_transformation_expression_per_component":[
+{
+"NTH_MAP_TRANFORMATION_EXPRESSION": "1"
+,"COMPONENT_NAME":"FILTER"
+,"i_map_expr": "1"
+,"is_parsed": "1"
+,"i_map_cp": ""
+,"I_owner_map_prop": "1"
+,"i_owner_map_attr": ""
+,"txt": "SRC_CITY.POPULATION>500"
+,"txt_clob": "SRC_CITY.POPULATION>500"
+,"parsed_txt": "@{R0}>500"
+,"text_only": "0"
+}
+]
+}
 ]
 }
 ,{
@@ -353,6 +384,9 @@
 ]
 }
 ]
+,"mapping_transformations_per_component":[
+]
 }
 ]
 }
+
