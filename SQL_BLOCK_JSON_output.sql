@@ -10,6 +10,8 @@ DECLARE
   v_iter_map_attr           NUMBER :=0;
   v_iter_map_ref            NUMBER :=0;
   v_iter_col                NUMBER :=0;
+  v_iter_map_prop_name      NUMBER :=0;
+  v_iter_map_transformation_expr number:=0;
   -- CURSOR FOR MAPPING
   CURSOR c_snp_mapping
   IS
@@ -151,6 +153,35 @@ DECLARE
         OR RES_NAME      = p_table_name
         OR TABLE_ALIAS   = p_table_name)
         );
+    CURSOR c_snp_map_prop_name (p_map_comp NUMBER)
+    IS
+      SELECT i_map_prop,
+        name AS prop_name,
+        business_name,
+        i_prop_def,
+        i_owner_mapping,
+        disp_name_key,
+        I_map_comp
+      FROM prod_odi_repo.snp_map_prop
+      WHERE i_map_comp = p_map_comp
+      AND I_map_prop  IN
+        (SELECT i_owner_map_prop
+        FROM prod_odi_repo.snp_map_expr
+        WHERE txt IS NOT NULL
+        );--there should be an expression
+    CURSOR c_snp_map_transformation_expr (p_map_prop NUMBER)
+    IS
+      SELECT i_map_expr,
+        is_parsed,
+        i_map_cp,
+        I_owner_map_prop,
+        i_owner_map_attr,
+        txt,
+        dbms_lob.substr(txt,4000,1) AS txt_clob,
+        parsed_txt,
+        text_only
+      FROM prod_odi_repo.snp_map_expr
+      WHERE i_owner_map_prop = p_map_prop;
   BEGIN
     --mapping loop
     FOR c_mapping IN c_snp_mapping
@@ -218,6 +249,7 @@ DECLARE
             dbms_output.put_line(',"I_owner_map_prop": '||'"'||c_map_expr.I_owner_map_prop||'"');
             dbms_output.put_line(',"i_owner_map_attr": '||'"'||c_map_expr.i_owner_map_attr||'"');
             dbms_output.put_line(',"txt": '||'"'||c_map_expr.txt||'"');
+            --dbms_output.put_line(dbms_lob.substr(c_map_expr.txt,4000,1));
             dbms_output.put_line(',"txt_clob": '||'"'||c_map_expr.txt_clob||'"');
             dbms_output.put_line(',"parsed_txt": '||'"'||c_map_expr.parsed_txt||'"');
             dbms_output.put_line(',"text_only": '||'"'||c_map_expr.text_only||'"');
@@ -313,6 +345,54 @@ DECLARE
         dbms_output.put_line(']');   --mapping reference end array
         v_iter_map_ref      := 0;
         v_iter_stg_category := 0;
+        dbms_output.put_line(',"mapping_transformations_per_component":[');
+        FOR c_snp_prp IN c_snp_map_prop_name (c_mapping_comp.i_map_comp)
+        LOOP
+          v_iter_map_prop_name  := v_iter_map_prop_name+1;
+          IF v_iter_map_prop_name=1 THEN
+            dbms_output.put_line('{');
+          ELSE
+            dbms_output.put_line(',{');
+          END IF;
+          dbms_output.put_line('"NTH_PROPERTY_NAME_PER_COMPONENT": '||'"'||v_iter_map_prop_name||'"');
+          dbms_output.put_line(',"COMPONENT_NAME":'||'"'|| c_mapping_comp.component_name||'"');
+          dbms_output.put_line(',"i_map_prop": '||'"'||c_snp_prp.i_map_prop||'"');
+          dbms_output.put_line(',"prop_name": '||'"'||c_snp_prp.prop_name||'"');
+          dbms_output.put_line(',"business_name": '||'"'||c_snp_prp.business_name||'"');
+          dbms_output.put_line(',"i_prop_def": '||'"'||c_snp_prp.i_prop_def||'"');
+          dbms_output.put_line(',"i_owner_mapping": '||'"'||c_snp_prp.i_owner_mapping||'"');
+          dbms_output.put_line(',"disp_name_key": '||'"'||c_snp_prp.disp_name_key||'"');
+          dbms_output.put_line(',"I_map_comp": '||'"'||c_snp_prp.I_map_comp||'"');
+          --dbms_output.put_line('}');
+        dbms_output.put_line(',"mapping_transformation_expression_per_component":[');          
+          for c_map_transformation_expr in c_snp_map_transformation_expr(c_snp_prp.i_map_prop)
+          loop
+          v_iter_map_transformation_expr := v_iter_map_transformation_expr + 1;
+          IF v_iter_map_transformation_expr=1 THEN
+            dbms_output.put_line('{');
+          ELSE
+            dbms_output.put_line(',{');
+          END IF;   
+            dbms_output.put_line('"NTH_MAP_TRANFORMATION_EXPRESSION": '||'"'||v_iter_map_transformation_expr||'"');
+            dbms_output.put_line(',"COMPONENT_NAME":'||'"'|| c_mapping_comp.component_name||'"');
+            dbms_output.put_line(',"i_map_expr": '||'"'||c_map_transformation_expr.i_map_expr||'"');
+            dbms_output.put_line(',"is_parsed": '||'"'||c_map_transformation_expr.is_parsed||'"');
+            dbms_output.put_line(',"i_map_cp": '||'"'||c_map_transformation_expr.i_map_cp||'"');
+            dbms_output.put_line(',"I_owner_map_prop": '||'"'||c_map_transformation_expr.I_owner_map_prop||'"');
+            dbms_output.put_line(',"i_owner_map_attr": '||'"'||c_map_transformation_expr.i_owner_map_attr||'"');
+            dbms_output.put_line(',"txt": '||'"'||c_map_transformation_expr.txt||'"');
+            --dbms_output.put_line(dbms_lob.substr(c_map_expr.txt,4000,1));
+            dbms_output.put_line(',"txt_clob": '||'"'||c_map_transformation_expr.txt_clob||'"');
+            dbms_output.put_line(',"parsed_txt": '||'"'||c_map_transformation_expr.parsed_txt||'"');
+            dbms_output.put_line(',"text_only": '||'"'||c_map_transformation_expr.text_only||'"');          
+          dbms_output.put_line('}');
+          end loop; --ending mapping transformation expression loop
+        dbms_output.put_line(']'); --mapping_transformation expression end array        
+        dbms_output.put_line('}'); --mapping_transformation name object
+          v_iter_map_transformation_expr:=0;
+        END LOOP;                  --ending property name per component loop
+        dbms_output.put_line(']'); --mapping_transformation_per_component end array
+        v_iter_map_prop_name := 0;
         --dbms_output.put_line('======================End Iteration of Mapping Component : '|| v_iter_map_comp||'======================');
         dbms_output.put_line('}'); --ending mapping component object
       END LOOP;                    --mapping component loop
