@@ -121,6 +121,22 @@
 ]
 ,"mapping_transformations_per_component":[
 ]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"7"
+,"comp_name":"SRC_PRODUCT"
+,"type_name":"DATASTORE"
+,"predecessor_map_comp":""
+,"predecessor_map_comp_name":""
+,"predecessor_oracle_comp_type":""
+,"predecessor_link_order":""
+,"successor_map_comp":"8"
+,"successor_map_comp_name":"DISTINCT_"
+,"successor_oracle_comp_type":"DISTINCT"
+,"successor_link_order":"1"
+}
+]
 }
 ,{
 "NTH_MAPPING_COMPONENT": "2"
@@ -201,6 +217,36 @@
 ,"map_reference_per_component":[
 ]
 ,"mapping_transformations_per_component":[
+]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"8"
+,"comp_name":"DISTINCT_"
+,"type_name":"DISTINCT"
+,"predecessor_map_comp":"7"
+,"predecessor_map_comp_name":"SRC_PRODUCT"
+,"predecessor_oracle_comp_type":"DATASTORE"
+,"predecessor_link_order":"1"
+,"successor_map_comp":""
+,"successor_map_comp_name":""
+,"successor_oracle_comp_type":""
+,"successor_link_order":""
+}
+,{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "2"
+,"i_map_comp":"8"
+,"comp_name":"DISTINCT_"
+,"type_name":"DISTINCT"
+,"predecessor_map_comp":""
+,"predecessor_map_comp_name":""
+,"predecessor_oracle_comp_type":""
+,"predecessor_link_order":""
+,"successor_map_comp":"9"
+,"successor_map_comp_name":"TRG_PROD_FAMILY"
+,"successor_oracle_comp_type":"DATASTORE"
+,"successor_link_order":"1"
+}
 ]
 }
 ,{
@@ -298,6 +344,22 @@
 }
 ]
 ,"mapping_transformations_per_component":[
+]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"9"
+,"comp_name":"TRG_PROD_FAMILY"
+,"type_name":"DATASTORE"
+,"predecessor_map_comp":"8"
+,"predecessor_map_comp_name":"DISTINCT_"
+,"predecessor_oracle_comp_type":"DISTINCT"
+,"predecessor_link_order":"1"
+,"successor_map_comp":""
+,"successor_map_comp_name":""
+,"successor_oracle_comp_type":""
+,"successor_link_order":""
+}
 ]
 }
 ]
