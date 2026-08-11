@@ -155,6 +155,22 @@
 ]
 ,"mapping_transformations_per_component":[
 ]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"10"
+,"comp_name":"TRG_PRODUCT"
+,"type_name":"DATASTORE"
+,"predecessor_map_comp":"11"
+,"predecessor_map_comp_name":"DISTINCT_"
+,"predecessor_oracle_comp_type":"DISTINCT"
+,"predecessor_link_order":"1"
+,"successor_map_comp":""
+,"successor_map_comp_name":""
+,"successor_oracle_comp_type":""
+,"successor_link_order":""
+}
+]
 }
 ,{
 "NTH_MAPPING_COMPONENT": "2"
@@ -352,6 +368,36 @@
 ]
 ,"mapping_transformations_per_component":[
 ]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"11"
+,"comp_name":"DISTINCT_"
+,"type_name":"DISTINCT"
+,"predecessor_map_comp":""
+,"predecessor_map_comp_name":""
+,"predecessor_oracle_comp_type":""
+,"predecessor_link_order":""
+,"successor_map_comp":"10"
+,"successor_map_comp_name":"TRG_PRODUCT"
+,"successor_oracle_comp_type":"DATASTORE"
+,"successor_link_order":"1"
+}
+,{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "2"
+,"i_map_comp":"11"
+,"comp_name":"DISTINCT_"
+,"type_name":"DISTINCT"
+,"predecessor_map_comp":"12"
+,"predecessor_map_comp_name":"JOIN"
+,"predecessor_oracle_comp_type":"JOIN"
+,"predecessor_link_order":"1"
+,"successor_map_comp":""
+,"successor_map_comp_name":""
+,"successor_oracle_comp_type":""
+,"successor_link_order":""
+}
+]
 }
 ,{
 "NTH_MAPPING_COMPONENT": "3"
@@ -430,6 +476,50 @@
 ,"text_only": "0"
 }
 ]
+}
+]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"12"
+,"comp_name":"JOIN"
+,"type_name":"JOIN"
+,"predecessor_map_comp":""
+,"predecessor_map_comp_name":""
+,"predecessor_oracle_comp_type":""
+,"predecessor_link_order":""
+,"successor_map_comp":"11"
+,"successor_map_comp_name":"DISTINCT_"
+,"successor_oracle_comp_type":"DISTINCT"
+,"successor_link_order":"1"
+}
+,{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "2"
+,"i_map_comp":"12"
+,"comp_name":"JOIN"
+,"type_name":"JOIN"
+,"predecessor_map_comp":"13"
+,"predecessor_map_comp_name":"SRC_PRODUCT"
+,"predecessor_oracle_comp_type":"DATASTORE"
+,"predecessor_link_order":"1"
+,"successor_map_comp":""
+,"successor_map_comp_name":""
+,"successor_oracle_comp_type":""
+,"successor_link_order":""
+}
+,{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "3"
+,"i_map_comp":"12"
+,"comp_name":"JOIN"
+,"type_name":"JOIN"
+,"predecessor_map_comp":"14"
+,"predecessor_map_comp_name":"TRG_PROD_FAMILY"
+,"predecessor_oracle_comp_type":"DATASTORE"
+,"predecessor_link_order":"1"
+,"successor_map_comp":""
+,"successor_map_comp_name":""
+,"successor_oracle_comp_type":""
+,"successor_link_order":""
 }
 ]
 }
@@ -595,6 +685,22 @@
 ]
 ,"mapping_transformations_per_component":[
 ]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"13"
+,"comp_name":"SRC_PRODUCT"
+,"type_name":"DATASTORE"
+,"predecessor_map_comp":""
+,"predecessor_map_comp_name":""
+,"predecessor_oracle_comp_type":""
+,"predecessor_link_order":""
+,"successor_map_comp":"12"
+,"successor_map_comp_name":"JOIN"
+,"successor_oracle_comp_type":"JOIN"
+,"successor_link_order":"2"
+}
+]
 }
 ,{
 "NTH_MAPPING_COMPONENT": "5"
@@ -695,6 +801,22 @@
 }
 ]
 ,"mapping_transformations_per_component":[
+]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"14"
+,"comp_name":"TRG_PROD_FAMILY"
+,"type_name":"DATASTORE"
+,"predecessor_map_comp":""
+,"predecessor_map_comp_name":""
+,"predecessor_oracle_comp_type":""
+,"predecessor_link_order":""
+,"successor_map_comp":"12"
+,"successor_map_comp_name":"JOIN"
+,"successor_oracle_comp_type":"JOIN"
+,"successor_link_order":"1"
+}
 ]
 }
 ]
