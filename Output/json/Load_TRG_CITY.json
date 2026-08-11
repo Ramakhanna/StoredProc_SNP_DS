@@ -163,6 +163,22 @@
 ]
 ,"mapping_transformations_per_component":[
 ]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"1"
+,"comp_name":"SRC_CITY"
+,"type_name":"DATASTORE"
+,"predecessor_map_comp":""
+,"predecessor_map_comp_name":""
+,"predecessor_oracle_comp_type":""
+,"predecessor_link_order":""
+,"successor_map_comp":"2"
+,"successor_map_comp_name":"FILTER"
+,"successor_oracle_comp_type":"FILTER"
+,"successor_link_order":"1"
+}
+]
 }
 ,{
 "NTH_MAPPING_COMPONENT": "2"
@@ -228,6 +244,36 @@
 ,"text_only": "0"
 }
 ]
+}
+]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"2"
+,"comp_name":"FILTER"
+,"type_name":"FILTER"
+,"predecessor_map_comp":"1"
+,"predecessor_map_comp_name":"SRC_CITY"
+,"predecessor_oracle_comp_type":"DATASTORE"
+,"predecessor_link_order":"1"
+,"successor_map_comp":""
+,"successor_map_comp_name":""
+,"successor_oracle_comp_type":""
+,"successor_link_order":""
+}
+,{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "2"
+,"i_map_comp":"2"
+,"comp_name":"FILTER"
+,"type_name":"FILTER"
+,"predecessor_map_comp":""
+,"predecessor_map_comp_name":""
+,"predecessor_oracle_comp_type":""
+,"predecessor_link_order":""
+,"successor_map_comp":"3"
+,"successor_map_comp_name":"TRG_CITY"
+,"successor_oracle_comp_type":"DATASTORE"
+,"successor_link_order":"1"
 }
 ]
 }
@@ -384,6 +430,22 @@
 }
 ]
 ,"mapping_transformations_per_component":[
+]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"3"
+,"comp_name":"TRG_CITY"
+,"type_name":"DATASTORE"
+,"predecessor_map_comp":"2"
+,"predecessor_map_comp_name":"FILTER"
+,"predecessor_oracle_comp_type":"FILTER"
+,"predecessor_link_order":"1"
+,"successor_map_comp":""
+,"successor_map_comp_name":""
+,"successor_oracle_comp_type":""
+,"successor_link_order":""
+}
 ]
 }
 ]
