@@ -97,6 +97,22 @@
 ]
 ,"mapping_transformations_per_component":[
 ]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"4"
+,"comp_name":"TRG_COUNTRY"
+,"type_name":"DATASTORE"
+,"predecessor_map_comp":"5"
+,"predecessor_map_comp_name":"DISTINCT_"
+,"predecessor_oracle_comp_type":"DISTINCT"
+,"predecessor_link_order":"1"
+,"successor_map_comp":""
+,"successor_map_comp_name":""
+,"successor_oracle_comp_type":""
+,"successor_link_order":""
+}
+]
 }
 ,{
 "NTH_MAPPING_COMPONENT": "2"
@@ -189,6 +205,36 @@
 ,"map_reference_per_component":[
 ]
 ,"mapping_transformations_per_component":[
+]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"5"
+,"comp_name":"DISTINCT_"
+,"type_name":"DISTINCT"
+,"predecessor_map_comp":""
+,"predecessor_map_comp_name":""
+,"predecessor_oracle_comp_type":""
+,"predecessor_link_order":""
+,"successor_map_comp":"4"
+,"successor_map_comp_name":"TRG_COUNTRY"
+,"successor_oracle_comp_type":"DATASTORE"
+,"successor_link_order":"1"
+}
+,{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "2"
+,"i_map_comp":"5"
+,"comp_name":"DISTINCT_"
+,"type_name":"DISTINCT"
+,"predecessor_map_comp":"6"
+,"predecessor_map_comp_name":"SRC_REGION"
+,"predecessor_oracle_comp_type":"DATASTORE"
+,"predecessor_link_order":"1"
+,"successor_map_comp":""
+,"successor_map_comp_name":""
+,"successor_oracle_comp_type":""
+,"successor_link_order":""
+}
 ]
 }
 ,{
@@ -324,6 +370,22 @@
 }
 ]
 ,"mapping_transformations_per_component":[
+]
+,"mapping_comp_pre_successor":[
+{
+"NTH_MAP_COMP_PRE_SUCCESSOR": "1"
+,"i_map_comp":"6"
+,"comp_name":"SRC_REGION"
+,"type_name":"DATASTORE"
+,"predecessor_map_comp":""
+,"predecessor_map_comp_name":""
+,"predecessor_oracle_comp_type":""
+,"predecessor_link_order":""
+,"successor_map_comp":"5"
+,"successor_map_comp_name":"DISTINCT_"
+,"successor_oracle_comp_type":"DISTINCT"
+,"successor_link_order":"1"
+}
 ]
 }
 ]
