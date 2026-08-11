@@ -1,17 +1,18 @@
 SET serveroutput ON;
 DECLARE
-  v_mapping_id              NUMBER :=5;
-  v_mapping_name            VARCHAR(100);
-  v_iter_map_comp           NUMBER :=0;
-  v_iter_map_comp_connpoint NUMBER :=0;
-  v_iter_map_connections    NUMBER :=0;
-  v_iter_stg_category       NUMBER :=0;
-  v_iter_map_expr           NUMBER :=0;
-  v_iter_map_attr           NUMBER :=0;
-  v_iter_map_ref            NUMBER :=0;
-  v_iter_col                NUMBER :=0;
-  v_iter_map_prop_name      NUMBER :=0;
-  v_iter_map_transformation_expr number:=0;
+  v_mapping_id                   NUMBER :=5;
+  v_mapping_name                 VARCHAR(100);
+  v_iter_map_comp                NUMBER :=0;
+  v_iter_map_comp_connpoint      NUMBER :=0;
+  v_iter_map_connections         NUMBER :=0;
+  v_iter_stg_category            NUMBER :=0;
+  v_iter_map_expr                NUMBER :=0;
+  v_iter_map_attr                NUMBER :=0;
+  v_iter_map_ref                 NUMBER :=0;
+  v_iter_col                     NUMBER :=0;
+  v_iter_map_prop_name           NUMBER :=0;
+  v_iter_map_transformation_expr NUMBER :=0;
+  v_iter_pre_successor           NUMBER :=0;
   -- CURSOR FOR MAPPING
   CURSOR c_snp_mapping
   IS
@@ -182,6 +183,138 @@ DECLARE
         text_only
       FROM prod_odi_repo.snp_map_expr
       WHERE i_owner_map_prop = p_map_prop;
+    CURSOR c_snp_pre_successor (p_mapping_id NUMBER, p_map_comp NUMBER)
+    IS
+      SELECT conn_relation.i_map_comp ,
+        conn_relation.comp_name ,
+        conn_relation.type_name ,
+        CASE
+          WHEN conn_relation.fetch_predecessor=1
+          AND predecessor_comp.FLG            ='Y'
+          THEN conn_relation.predecessor_stage
+        END AS predecessor_map_comp ,
+        CASE
+          WHEN conn_relation.fetch_predecessor=1
+          AND predecessor_comp.FLG            ='Y'
+          THEN predecessor_comp.component_name
+        END AS predecessor_map_comp_name ,
+        CASE
+          WHEN conn_relation.fetch_predecessor=1
+          AND predecessor_comp.FLG            ='Y'
+          THEN predecessor_comp.oracle_component_type
+        END AS predecessor_oracle_comp_type ,
+        CASE
+          WHEN conn_relation.fetch_predecessor=1
+          AND predecessor_comp.FLG            ='Y'
+          THEN conn_relation.predecessor_link_order
+        END AS predecessor_link_order ,
+        CASE
+          WHEN conn_relation.fetch_successor=1
+          AND successor_comp.FLG            ='Y'
+          THEN conn_relation.successor_stage
+        END AS successor_map_comp ,
+        CASE
+          WHEN conn_relation.fetch_successor=1
+          AND successor_comp.FLG            ='Y'
+          THEN successor_comp.component_name
+        END AS successor_map_comp_name ,
+        CASE
+          WHEN conn_relation.fetch_successor=1
+          AND successor_comp.FLG            ='Y'
+          THEN successor_comp.oracle_component_type
+        END AS successor_oracle_comp_type ,
+        CASE
+          WHEN conn_relation.fetch_successor=1
+          AND successor_comp.FLG            ='Y'
+          THEN conn_relation.successor_link_order
+        END AS successor_link_order
+      FROM
+        (SELECT conn.i_map_conn ,
+          conn.name AS conn_name ,
+          conn.business_name ,
+          conn.i_start_map_cp ,
+          conn.i_end_map_cp ,
+          conn.i_owner_mapping ,
+          src_cp.i_map_cp AS src_map_cp ,
+          tgt_cp.i_map_cp AS tgt_map_cp
+          --, src_cp.name as src_cp_name
+          ,
+          src_cp.i_owner_map_comp AS src_comp_id ,
+          tgt_cp.i_owner_map_comp AS tgt_comp_id ,
+          src_cp.direction        AS src_direction ,
+          tgt_cp.direction        AS tgt_direction
+          --            , src_cp.cardinality
+          -- , src_cp.cp_order as src_link_order
+          --, tgt_cp.name as tgt_cp_name
+          --            , tgt_cp.cardinality
+          -- , tgt_cp.cp_order as tgt_link_order
+          ,
+          comp.i_map_comp ,
+          comp.name AS comp_name ,
+          CASE
+            WHEN comp.i_map_comp = src_cp.i_owner_map_comp
+            THEN 0
+            ELSE 1
+          END AS fetch_predecessor ,
+          CASE
+            WHEN comp.i_map_comp = tgt_cp.i_owner_map_comp
+            THEN 0
+            ELSE 1
+          END AS fetch_successor ,
+          CASE
+            WHEN comp.i_map_comp = src_cp.i_owner_map_comp
+            THEN tgt_cp.i_owner_map_comp
+            ELSE src_cp.i_owner_map_comp
+          END AS predecessor_stage ,
+          CASE
+            WHEN comp.i_map_comp = tgt_cp.i_owner_map_comp
+            THEN src_cp.i_owner_map_comp
+            ELSE tgt_cp.i_owner_map_comp
+          END AS successor_stage ,
+          CASE
+            WHEN comp.i_map_comp = src_cp.i_owner_map_comp
+            THEN tgt_cp.cp_order
+            ELSE src_cp.cp_order
+          END AS predecessor_link_order ,
+          CASE
+            WHEN comp.i_map_comp = tgt_cp.i_owner_map_comp
+            THEN src_cp.cp_order
+            ELSE tgt_cp.cp_order
+          END AS successor_link_order
+          --, comp.business_name
+          --, comp.i_owner_mapping
+          --, comp.i_map_comp_type
+          ,
+          comp.type_name
+        FROM prod_odi_repo.snp_map_conn conn
+        INNER JOIN prod_odi_repo.snp_map_cp src_cp
+        ON src_cp.i_map_cp = conn.i_start_map_cp
+        INNER JOIN prod_odi_repo.snp_map_cp tgt_cp
+        ON tgt_cp.i_map_cp = conn.i_end_map_cp
+        INNER JOIN prod_odi_repo.snp_map_comp comp
+        ON (comp.i_map_comp       = tgt_cp.i_owner_map_comp
+        OR comp.i_map_comp        = src_cp.i_owner_map_comp )
+        WHERE conn.i_owner_mapping=p_mapping_id
+        AND comp.i_map_comp       =p_map_comp
+        ) conn_relation
+    LEFT JOIN
+      (SELECT i_map_comp,
+        name      AS component_name,
+        type_name AS oracle_component_type,
+        'Y'       AS FLG
+      FROM prod_odi_repo.snp_map_comp
+      WHERE i_owner_mapping=p_mapping_id
+      ) predecessor_comp
+    ON predecessor_comp.i_map_comp=conn_relation.predecessor_stage
+    LEFT JOIN
+      (SELECT i_map_comp,
+        name      AS component_name,
+        type_name AS oracle_component_type,
+        'Y'       AS FLG
+      FROM prod_odi_repo.snp_map_comp
+      WHERE i_owner_mapping=p_mapping_id
+      ) successor_comp
+    ON successor_comp.i_map_comp=conn_relation.successor_stage ;
   BEGIN
     --mapping loop
     FOR c_mapping IN c_snp_mapping
@@ -364,15 +497,15 @@ DECLARE
           dbms_output.put_line(',"disp_name_key": '||'"'||c_snp_prp.disp_name_key||'"');
           dbms_output.put_line(',"I_map_comp": '||'"'||c_snp_prp.I_map_comp||'"');
           --dbms_output.put_line('}');
-        dbms_output.put_line(',"mapping_transformation_expression_per_component":[');          
-          for c_map_transformation_expr in c_snp_map_transformation_expr(c_snp_prp.i_map_prop)
-          loop
-          v_iter_map_transformation_expr := v_iter_map_transformation_expr + 1;
-          IF v_iter_map_transformation_expr=1 THEN
-            dbms_output.put_line('{');
-          ELSE
-            dbms_output.put_line(',{');
-          END IF;   
+          dbms_output.put_line(',"mapping_transformation_expression_per_component":[');
+          FOR c_map_transformation_expr IN c_snp_map_transformation_expr(c_snp_prp.i_map_prop)
+          LOOP
+            v_iter_map_transformation_expr  := v_iter_map_transformation_expr + 1;
+            IF v_iter_map_transformation_expr=1 THEN
+              dbms_output.put_line('{');
+            ELSE
+              dbms_output.put_line(',{');
+            END IF;
             dbms_output.put_line('"NTH_MAP_TRANFORMATION_EXPRESSION": '||'"'||v_iter_map_transformation_expr||'"');
             dbms_output.put_line(',"COMPONENT_NAME":'||'"'|| c_mapping_comp.component_name||'"');
             dbms_output.put_line(',"i_map_expr": '||'"'||c_map_transformation_expr.i_map_expr||'"');
@@ -384,15 +517,40 @@ DECLARE
             --dbms_output.put_line(dbms_lob.substr(c_map_expr.txt,4000,1));
             dbms_output.put_line(',"txt_clob": '||'"'||c_map_transformation_expr.txt_clob||'"');
             dbms_output.put_line(',"parsed_txt": '||'"'||c_map_transformation_expr.parsed_txt||'"');
-            dbms_output.put_line(',"text_only": '||'"'||c_map_transformation_expr.text_only||'"');          
-          dbms_output.put_line('}');
-          end loop; --ending mapping transformation expression loop
-        dbms_output.put_line(']'); --mapping_transformation expression end array        
-        dbms_output.put_line('}'); --mapping_transformation name object
+            dbms_output.put_line(',"text_only": '||'"'||c_map_transformation_expr.text_only||'"');
+            dbms_output.put_line('}');
+          END LOOP;                  --ending mapping transformation expression loop
+          dbms_output.put_line(']'); --mapping_transformation expression end array
+          dbms_output.put_line('}'); --mapping_transformation name object
           v_iter_map_transformation_expr:=0;
         END LOOP;                  --ending property name per component loop
         dbms_output.put_line(']'); --mapping_transformation_per_component end array
         v_iter_map_prop_name := 0;
+        dbms_output.put_line(',"mapping_comp_pre_successor":[');
+        FOR c_pre_successor IN c_snp_pre_successor (c_mapping.i_mapping, c_mapping_comp.i_map_comp)
+        LOOP
+          v_iter_pre_successor  := v_iter_pre_successor+1;
+          IF v_iter_pre_successor=1 THEN
+            dbms_output.put_line('{');
+          ELSE
+            dbms_output.put_line(',{');
+          END IF;
+          dbms_output.put_line('"NTH_MAP_COMP_PRE_SUCCESSOR": '||'"'||v_iter_pre_successor||'"');
+          dbms_output.put_line(',"i_map_comp":'||'"'|| c_pre_successor.i_map_comp||'"');
+          dbms_output.put_line(',"comp_name":'||'"'|| c_pre_successor.comp_name||'"');
+          dbms_output.put_line(',"type_name":'||'"'|| c_pre_successor.type_name||'"');
+          dbms_output.put_line(',"predecessor_map_comp":'||'"'|| c_pre_successor.predecessor_map_comp||'"');
+          dbms_output.put_line(',"predecessor_map_comp_name":'||'"'|| c_pre_successor.predecessor_map_comp_name||'"');
+          dbms_output.put_line(',"predecessor_oracle_comp_type":'||'"'|| c_pre_successor.predecessor_oracle_comp_type||'"');
+          dbms_output.put_line(',"predecessor_link_order":'||'"'|| c_pre_successor.predecessor_link_order||'"');
+          dbms_output.put_line(',"successor_map_comp":'||'"'|| c_pre_successor.successor_map_comp||'"');
+          dbms_output.put_line(',"successor_map_comp_name":'||'"'|| c_pre_successor.successor_map_comp_name||'"');
+          dbms_output.put_line(',"successor_oracle_comp_type":'||'"'|| c_pre_successor.successor_oracle_comp_type||'"');
+          dbms_output.put_line(',"successor_link_order":'||'"'|| c_pre_successor.successor_link_order||'"');
+          dbms_output.put_line('}'); --ending predecessor successor object
+        END LOOP;                    --ending predecessor successor component loop
+        v_iter_pre_successor :=0;
+        dbms_output.put_line(']'); --predecessor successor component end array
         --dbms_output.put_line('======================End Iteration of Mapping Component : '|| v_iter_map_comp||'======================');
         dbms_output.put_line('}'); --ending mapping component object
       END LOOP;                    --mapping component loop
